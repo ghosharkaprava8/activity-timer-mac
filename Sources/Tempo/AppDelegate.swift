@@ -19,6 +19,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             button.image = NSImage(systemSymbolName: "stopwatch", accessibilityDescription: "Tempo")
             button.image?.isTemplate = true
             button.imagePosition = .imageLeading
+            // Fixed-width digits so the bar item doesn't shift as the time ticks.
+            button.font = NSFont.monospacedDigitSystemFont(ofSize: NSFont.systemFontSize, weight: .regular)
             button.action = #selector(togglePopover)
             button.target = self
         }
