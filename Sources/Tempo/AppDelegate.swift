@@ -26,10 +26,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         popover.behavior = .transient
-        popover.contentViewController = NSHostingController(
+        let host = NSHostingController(
             rootView: MenuView(store: store, openStats: { [weak self] in self?.openStats() },
                                quit: { NSApp.terminate(nil) })
         )
+        host.sizingOptions = [.preferredContentSize] // popover grows to fit content
+        popover.contentViewController = host
 
         // Guards
         NSWorkspace.shared.notificationCenter.addObserver(
