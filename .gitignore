@@ -1,0 +1,5 @@
+/Tempo
+/Tempo.app
+/.build
+*.o
+.DS_Store
