@@ -24,4 +24,7 @@ enum Fmt {
         let m = Int((seconds / 60).rounded())
         return m >= 60 ? "\(m / 60)h \(m % 60)m" : "\(m)m"
     }
+
+    // Hours + minutes for summaries, e.g. "1h 12m" or "12m".
+    static func hm(_ seconds: Double) -> String { dur(seconds) }
 }

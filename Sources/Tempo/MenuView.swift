@@ -99,14 +99,10 @@ struct MenuView: View {
                 Text("Running…").font(.system(size: 11, weight: .semibold))
                     .foregroundStyle(Color(hex: "#16a34a"))
             } else {
-                if today > 0 {
-                    Text(Fmt.hours(today)).font(.system(size: 12))
-                        .foregroundStyle(.tertiary)
-                }
                 Image(systemName: "play.fill").font(.system(size: 12)).foregroundStyle(.secondary)
             }
             Button {
-                let h = Fmt.hours(today)
+                let h = Fmt.hm(today)
                 if confirm("Reset today's time for \"\(task.name)\" (\(h)) to zero? Earlier days stay.") {
                     store.resetToday(task.name)
                 }
@@ -155,7 +151,7 @@ struct MenuView: View {
                 Text("TODAY").font(.system(size: 11, weight: .semibold)).tracking(0.6)
                     .foregroundStyle(.tertiary)
                 Spacer()
-                Text(Fmt.hours(total)).font(.system(size: 15, weight: .semibold)).monospacedDigit()
+                Text(Fmt.hm(total)).font(.system(size: 15, weight: .semibold)).monospacedDigit()
             }
             if entries.isEmpty {
                 Text("Nothing logged yet today.")
@@ -177,7 +173,7 @@ struct MenuView: View {
                         Circle().fill(store.color(for: e.task)).frame(width: 8, height: 8)
                         Text(e.task).font(.system(size: 13)).foregroundStyle(.secondary)
                         Spacer()
-                        Text(Fmt.hours(e.seconds)).font(.system(size: 13, weight: .medium)).monospacedDigit()
+                        Text(Fmt.hm(e.seconds)).font(.system(size: 13, weight: .medium)).monospacedDigit()
                     }
                 }
             }
